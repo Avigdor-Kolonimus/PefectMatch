@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="344dp"
+        android:layout_height="345dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="21dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tvCourse1Name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:gravity="center"
+                android:text="Course Name" />
+
+            <EditText
+                android:id="@+id/etCourse1Grade"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:gravity="center"
+
+                android:text="Req. Grade:"
+                android:importantForAutofill="no" />
+
+            <EditText
+                android:id="@+id/etCourse1Weight"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="2"
+                android:gravity="center"
+                android:text="Course Weight:"
+                android:importantForAutofill="no" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/tvCourse2Name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:gravity="center"
+                android:text="Course Name" />
+
+            <EditText
+                android:id="@+id/etCourse2Grade"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:gravity="center"
+
+                android:text="Req. Grade:"
+                android:inputType="" />
+
+            <EditText
+                android:id="@+id/etCourse2Weight"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="2"
+                android:gravity="center"
+                android:text="Course Weight:"
+                android:inputType="" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/tvCourse3Name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:gravity="center"
+                android:text="Course Name" />
+
+            <EditText
+                android:id="@+id/etCourse3Grade"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:gravity="center"
+
+                android:text="Req. Grade:" />
+
+            <EditText
+                android:id="@+id/etCourse3Weight"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="2"
+                android:gravity="center"
+                android:text="Course Weight:" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/tvCourse4Name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:gravity="center"
+                android:text="Course Name" />
+
+            <EditText
+                android:id="@+id/etCourse4Grade"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:gravity="center"
+
+                android:text="Req. Grade:" />
+
+            <EditText
+                android:id="@+id/etCourse4Weight"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="2"
+                android:gravity="center"
+                android:text="Course Weight:" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/tvCourse5Name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:gravity="center"
+                android:text="Course Name" />
+
+            <EditText
+                android:id="@+id/etCourse5Grade"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:gravity="center"
+
+                android:text="Req. Grade:"
+                android:importantForAutofill="no" />
+
+            <EditText
+                android:id="@+id/etCourse5Weight"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="2"
+                android:gravity="center"
+                android:text="Course Weight:"
+                android:inputType="" />
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/btnSubmitContinue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="61dp"
+        android:text="@string/submit_continue" />
+
+    <Button
+        android:id="@+id/btnSubmitExit"
+        android:layout_width="161dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btnSubmitContinue"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/submit_exit" />
+</RelativeLayout>

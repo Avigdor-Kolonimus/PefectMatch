@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/etApplicantName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/etApplicantPassword"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="36dp"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/etApplicantPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="93dp"
+        android:layout_marginTop="257dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="108dp"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/etApplicantId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="91dp"
+        android:layout_marginTop="107dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="181dp"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/etApplicantUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/etApplicantName"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-1dp"
+        android:layout_marginBottom="283dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:importantForAutofill="no" />
+
+    <TextView
+        android:id="@+id/tvApplicantName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="48dp"
+        android:text="@string/name" />
+
+    <TextView
+        android:id="@+id/tvApplicantId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tvApplicantName"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="125dp"
+        android:text="@string/id" />
+
+    <TextView
+        android:id="@+id/tvApplicantUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tvApplicantName"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="193dp"
+        android:text="@string/user_name_applicant" />
+
+    <TextView
+        android:id="@+id/tvApplicantPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="220dp"
+        android:text="@string/password_applicant" />
+
+    <Button
+        android:id="@+id/btnSignUpApplicant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="95dp"
+        android:text="@string/create_my_profile_applicant" />
+
+</RelativeLayout>

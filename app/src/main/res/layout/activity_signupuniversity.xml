@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvUniversityName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/university_name" />
+
+    <TextView
+        android:id="@+id/tvUniversityUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/tvUniversityName"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="27dp"
+        android:text="@string/user_name_university" />
+
+    <TextView
+        android:id="@+id/tvUniversityPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tvUniversityUserName"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="268dp"
+        android:text="@string/password_university" />
+
+    <EditText
+        android:id="@+id/etUniversityName"
+        android:layout_width="319dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="86dp"
+        android:layout_marginEnd="30dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/etUniversityUserName"
+        android:layout_width="317dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/etUniversityName"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="196dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/etUniversityPassword"
+        android:layout_width="321dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/etUniversityName"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="302dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:importantForAutofill="no" />
+
+    <Button
+        android:id="@+id/btnCreateProfileUniversity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="57dp"
+        android:layout_toEndOf="@+id/tvUniversityName"
+        android:text="@string/create_a_profile_u" />
+
+</RelativeLayout>
