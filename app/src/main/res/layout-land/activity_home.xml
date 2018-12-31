@@ -6,37 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".Home">
 
-    <TextView
-        android:id="@+id/tvNewUser2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="112dp"
-        android:text="@string/new_user" />
-
     <Button
-        android:textColor="#ffffff"
-        android:background="@drawable/button_style"
         android:id="@+id/btnSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="183dp"
-        android:text="@string/sign_in" />
+        android:layout_marginEnd="484dp"
+        android:layout_marginBottom="104dp"
+        android:background="@drawable/button_style"
+        android:text="@string/sign_in"
+        android:textColor="#ffffff" />
 
     <Button
         android:id="@+id/btnSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/btnSignIn"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="-1dp"
-        android:layout_marginBottom="34dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/button_style"
-        android:textColor="#ffffff"
-        android:text="@string/sign_up"/>
+        android:text="@string/sign_up"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/tvNewUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="23dp"
+        android:layout_marginBottom="75dp"
+        android:layout_toEndOf="@+id/tvSelectType"
+        android:text="@string/new_user" />
 
     <EditText
         android:id="@+id/etName"
@@ -44,11 +45,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginStart="249dp"
+        android:layout_marginTop="9dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:importantForAutofill="no" />
+        android:importantForAutofill="no"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/etPassword"
@@ -56,18 +57,20 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/etName"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="125dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="1dp"
+        android:autofillHints=""
         android:ems="10"
-        android:inputType="textPassword"
-        android:autofillHints="" />
+        android:inputType="textPassword" />
 
     <RadioGroup
         android:id="@+id/rgType"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="214dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="163dp"
+        android:layout_marginEnd="131dp"
         android:checkedButton="@+id/rbtnApplicant"
         android:orientation="horizontal">
 
@@ -75,6 +78,7 @@
             android:id="@+id/rbtnApplicant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/rgType"
             android:layout_weight="1"
             android:text="@string/applicant" />
 
@@ -98,8 +102,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="66dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="189dp"
         android:layout_toStartOf="@+id/tvNewUser"
         android:text="@string/user_name" />
 
@@ -109,8 +113,8 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/tvLogin"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="136dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="94dp"
         android:text="@string/password" />
 
     <TextView
@@ -119,8 +123,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="34dp"
-        android:layout_marginBottom="87dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="75dp"
         android:text="@string/select_type" />
-
 </RelativeLayout>

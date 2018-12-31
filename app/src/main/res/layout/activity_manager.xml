@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="0dp">
+
+        <TableLayout
+            android:id="@+id/tableProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:stretchColumns="*">
+
+            <TableRow
+                android:id="@+id/tbrManager"
+                android:background="#ccc"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="@string/manager" />
+
+            </TableRow>
+            <!--
+                Dates
+            -->
+            <TableRow
+                android:id="@+id/tbrCalcDate"
+                android:background="#2288"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="@string/next_calculation" />
+
+                <TextView
+                    android:id="@+id/tvNextDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tbrBlockUniversity"
+                android:background="#2288"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="@string/block_date_universities" />
+
+                <TextView
+                    android:id="@+id/tvBlockingUniversities"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date"  />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tbrProjectNature"
+                android:background="#2288"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="@string/block_date_applicants" />
+
+                <TextView
+                    android:id="@+id/tvBlockingApplicants"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date"  />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tbrUpdateDate"
+                android:background="#2288"
+                android:padding="5dp">
+
+                <Button
+                    android:id="@+id/btnUpdateDate"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_style"
+                    android:text="@string/update"
+                    android:textColor="#ffffff" />
+            </TableRow>
+            <!--
+                Block and UnBlock
+                -->
+            <TableRow
+                android:id="@+id/tbrBTNblockU"
+                android:layout_height="16dp"
+                android:background="#6511"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="@string/universities" />
+
+                <Button
+                    android:id="@+id/btnBlockUniv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_style"
+                    android:text="@string/block"
+                    android:textColor="#ffffff" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tbrBTNblockA"
+                android:background="#6511"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="@string/applicants" />
+
+                <Button
+                    android:id="@+id/btnBlockAppl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_style"
+                    android:text="@string/block"
+                    android:textColor="#ffffff" />
+            </TableRow>
+            <!--
+                Run Algorithm
+                -->
+            <TableRow
+                android:id="@+id/tbrAlgorithm"
+                android:background="#9090"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="@string/run_algorithm" />
+
+                <Button
+                    android:id="@+id/btnRunAlgorithm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_style"
+                    android:text="@string/run"
+                    android:textColor="#ffffff" />
+            </TableRow>
+            <!--EXIT-->
+            <TableRow
+                android:id="@+id/tbrExit"
+                android:background="#ffffff"
+                android:padding="5dp">
+
+                <Button
+                    android:id="@+id/btnManagerExit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_style"
+                    android:text="@string/exit"
+                    android:textColor="#ffffff" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+</RelativeLayout>

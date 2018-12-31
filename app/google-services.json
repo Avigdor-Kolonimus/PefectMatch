@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "881335924966",
+    "firebase_url": "https://perfectmatchshal.firebaseio.com",
+    "project_id": "perfectmatchshal",
+    "storage_bucket": "perfectmatchshal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:881335924966:android:a2cf9becd886133f",
+        "android_client_info": {
+          "package_name": "com.sanda.wtf.pefectmatch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "881335924966-vo4iriivuno59d51angnnka6mosj8eqg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBB4IkM1naynh45DXXhUvCzEtJkjFDiqYI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

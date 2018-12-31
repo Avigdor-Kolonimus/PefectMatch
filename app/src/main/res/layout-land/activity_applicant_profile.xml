@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp">
+        <TableLayout
+            android:id="@+id/tableProfile"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:stretchColumns="*">
+
+                <TableRow
+                    android:id="@+id/header"
+                    android:background="#ccc"
+                    android:padding="5dp">
+                    <TextView
+                        android:layout_gravity="center"
+                        android:text="@string/my_profile" />
+
+                    <ImageButton
+                        android:id="@+id/ibtnMail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@android:drawable/sym_action_email"
+                        android:contentDescription="@string/todo" />
+                </TableRow>
+                <!--
+                    GENERAL
+                -->
+                <TableRow
+                    android:id="@+id/tbrFaculty"
+                    android:background="#2288"
+                    android:padding="5dp">
+                    <TextView
+                        android:layout_gravity="center"
+                        android:text="@string/faculty" />
+                    <TextView
+                        android:id="@+id/tvFaculty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/math" />
+
+                </TableRow>
+                <TableRow
+                    android:id="@+id/tbrAverage"
+                    android:background="#2288"
+                    android:padding="5dp">
+                    <TextView
+                        android:layout_gravity="center"
+                        android:text="@string/average" />
+
+                    <EditText
+                        android:id="@+id/etAverage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:autofillHints="" />
+
+                </TableRow>
+                <TableRow
+                    android:id="@+id/tbrProjectNature"
+                    android:background="#2288"
+                    android:padding="5dp">
+                    <TextView
+                        android:layout_gravity="center"
+                        android:text="Project Nature" />
+
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </TableRow>
+                <TableRow
+                    android:id="@+id/tbrProjectGrade"
+                    android:background="#2288"
+                    android:padding="5dp">
+                    <TextView
+                        android:layout_gravity="center"
+                        android:text="Project Grade" />
+
+                    <EditText
+                        android:id="@+id/etProjectGrade"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:autofillHints="" />
+
+                </TableRow>
+                <TableRow
+                    android:id="@+id/tbrUpdateGeneral"
+                    android:background="#2288"
+                    android:padding="5dp">
+
+                    <Button
+                        android:id="@+id/btnUpdateGeneral"
+                        android:textColor="#ffffff"
+                        android:background="@drawable/button_style"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/update" />
+                </TableRow>
+                <!--
+                    COURSE GRADES
+                -->
+                <TableRow
+                    android:id="@+id/tbrCourseGrade1"
+                    android:background="#2100"
+                    android:padding="5dp">
+                    <TextView
+                        android:id="@+id/tvCourse1"
+                        android:layout_gravity="center"
+                        android:text="@string/course_1_grade" />
+
+                    <EditText
+                        android:id="@+id/etCourseGrade1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:autofillHints="" />
+
+                </TableRow>
+                <TableRow
+                    android:id="@+id/tbrCourseGrade2"
+                    android:background="#2100"
+                    android:padding="5dp">
+                    <TextView
+                        android:id="@+id/tvCourse2"
+                        android:layout_gravity="center"
+                        android:text="@string/course_2_grade" />
+
+                    <EditText
+                        android:id="@+id/etCourseGrade2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:autofillHints="" />
+
+                </TableRow>
+                <TableRow
+                    android:id="@+id/tbrCourseGrade3"
+                    android:background="#2100"
+                    android:padding="5dp">
+                    <TextView
+                        android:id="@+id/tvCourse3"
+                        android:layout_gravity="center"
+                        android:text="@string/course_3_grade" />
+
+                    <EditText
+                        android:id="@+id/etCourseGrade3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:autofillHints="" />
+
+                </TableRow>
+                <TableRow
+                    android:id="@+id/tbrCourseGrade4"
+                    android:background="#2100"
+                    android:padding="5dp">
+                    <TextView
+                        android:id="@+id/tvCourse4"
+                        android:layout_gravity="center"
+                        android:text="@string/course_4_grade" />
+
+                    <EditText
+                        android:id="@+id/etCourseGrade4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:autofillHints="" />
+
+                </TableRow>
+                <TableRow
+                    android:id="@+id/tbrCourseGrade5"
+                    android:background="#2100"
+                    android:padding="5dp">
+                    <TextView
+                        android:id="@+id/tvCourse5"
+                        android:layout_gravity="center"
+                        android:text="@string/course_5_grade" />
+
+                    <EditText
+                        android:id="@+id/etCourseGrade5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:autofillHints="" />
+
+                </TableRow>
+                <TableRow
+                    android:id="@+id/tbrUpdateCourseGrades"
+                    android:background="#2100"
+                    android:padding="5dp">
+
+                    <Button
+                        android:id="@+id/btnUpdateCourseGrades"
+                        android:textColor="#ffffff"
+                        android:background="@drawable/button_style"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/update_grades" />
+                </TableRow>
+                <!--
+                    FACULTY PREFERENCES
+                -->
+                <TableRow
+                    android:id="@+id/tbrUpdatePreferenceList"
+                    android:background="#1900"
+                    android:padding="5dp">
+
+                    <Button
+                        android:id="@+id/btnUpdatePreferenceList"
+                        android:textColor="#ffffff"
+                        android:background="@drawable/button_style"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/update_preference_list" />
+                </TableRow>
+            <!--
+                    EXIT
+                -->
+            <TableRow
+                android:id="@+id/tbrEXIT"
+                android:background="#9009"
+                android:padding="5dp">
+                <Button
+                    android:id="@+id/btnApplicantExit"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/button_style"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/exit" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+
+</RelativeLayout>

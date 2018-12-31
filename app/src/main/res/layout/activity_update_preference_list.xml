@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:background="#fff">
+        <TableLayout android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*"
+            android:id="@+id/tableUpdatePreference">
+            <TableRow android:id="@+id/header"
+                android:padding="5dp"
+                android:background="#ccc">
+                <TextView android:text="University"
+                    android:layout_gravity="center"
+                    />
+                <TextView android:text="Preference"
+                    android:layout_gravity="center"
+                    />
+            </TableRow>
+        </TableLayout>
+
+        <TableLayout android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*">
+            <Button
+                android:id="@+id/btnUpdatePreference"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="UPDATE" />
+        </TableLayout>
+    </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

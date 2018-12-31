@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--Table-->
     <TableLayout
-        android:id="@+id/tl_faculty_courses"
-        android:layout_width="344dp"
-        android:layout_height="345dp"
+        android:id="@+id/tlApplicantGrades"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="21dp">
-
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="210dp">
+        <!--FIRST COURSE-->
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_alignTop="@+id/tlApplicantGrades">
 
             <TextView
                 android:id="@+id/tvCourse1Name"
@@ -29,20 +32,11 @@
                 android:layout_height="match_parent"
                 android:layout_column="1"
                 android:gravity="center"
-
                 android:importantForAutofill="no"
-                android:text="Req. Grade:" />
-
-            <EditText
-                android:id="@+id/etCourse1Weight"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_column="2"
-                android:gravity="center"
-                android:importantForAutofill="no"
-                android:text="Course Weight:" />
+                android:inputType="numberDecimal"
+                android:text="" />
         </TableRow>
-
+        <!--SECOND COURSE-->
         <TableRow>
 
             <TextView
@@ -59,20 +53,10 @@
                 android:layout_height="match_parent"
                 android:layout_column="1"
                 android:gravity="center"
-
-                android:inputType=""
-                android:text="Req. Grade:" />
-
-            <EditText
-                android:id="@+id/etCourse2Weight"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_column="2"
-                android:gravity="center"
-                android:inputType=""
-                android:text="Course Weight:" />
+                android:inputType="numberDecimal"
+                android:text="" />
         </TableRow>
-
+        <!--THIRD COURSE-->
         <TableRow>
 
             <TextView
@@ -89,18 +73,10 @@
                 android:layout_height="match_parent"
                 android:layout_column="1"
                 android:gravity="center"
-
-                android:text="Req. Grade:" />
-
-            <EditText
-                android:id="@+id/etCourse3Weight"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_column="2"
-                android:gravity="center"
-                android:text="Course Weight:" />
+                android:inputType="numberDecimal"
+                android:text="" />
         </TableRow>
-
+        <!--FORTH COURSE-->
         <TableRow>
 
             <TextView
@@ -117,23 +93,15 @@
                 android:layout_height="match_parent"
                 android:layout_column="1"
                 android:gravity="center"
-
-                android:text="Req. Grade:" />
-
-            <EditText
-                android:id="@+id/etCourse4Weight"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_column="2"
-                android:gravity="center"
-                android:text="Course Weight:" />
+                android:inputType="numberDecimal"
+                android:text="" />
         </TableRow>
-
+        <!--FIFTH COURSE-->
         <TableRow>
 
             <TextView
                 android:id="@+id/tvCourse5Name"
-                android:layout_width="match_parent"
+                android:layout_width="178dp"
                 android:layout_height="match_parent"
                 android:layout_column="0"
                 android:gravity="center"
@@ -141,43 +109,25 @@
 
             <EditText
                 android:id="@+id/etCourse5Grade"
-                android:layout_width="wrap_content"
+                android:layout_width="180dp"
                 android:layout_height="match_parent"
                 android:layout_column="1"
                 android:gravity="center"
-
                 android:importantForAutofill="no"
-                android:text="Req. Grade:" />
-
-            <EditText
-                android:id="@+id/etCourse5Weight"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_column="2"
-                android:gravity="center"
-                android:inputType=""
-                android:text="Course Weight:" />
+                android:inputType="numberDecimal"
+                android:text="" />
         </TableRow>
-
     </TableLayout>
-
+    <!--NEXT STEP-->
     <Button
-        android:id="@+id/btnSubmitContinue"
+        android:id="@+id/btnApplicantGrades"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginBottom="61dp"
-        android:text="@string/submit_continue" />
-
-    <Button
-        android:id="@+id/btnSubmitExit"
-        android:layout_width="161dp"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/btnSubmitContinue"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="24dp"
-        android:text="@string/submit_exit" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/button_style"
+        android:text="Next Step!"
+        android:textColor="#ffffff" />
 </RelativeLayout>

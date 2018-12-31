@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:background="#fff">
+        <TableLayout android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*"
+            android:id="@+id/table">
+            <TableRow android:id="@+id/header"
+                android:padding="5dp"
+                android:background="#ccc">
+                <TextView android:text="University"
+                    android:layout_gravity="center"
+                    />
+                <TextView android:text="Preference"
+                    android:layout_gravity="center"
+                    />
+            </TableRow>
+        </TableLayout>
+
+        <TextView android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_horizontal"
+            android:text="Add to table:"/>
+        <TableLayout android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*">
+            <TableRow>
+                <TextView android:text="University"
+                    android:layout_marginLeft="10dp"/>
+
+                <Spinner
+                    android:id="@+id/spinnerUniversity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </TableRow>
+            <TableRow>
+                <TextView android:text="Preference"
+                    android:layout_marginLeft="10dp"/>
+
+                <Spinner
+                    android:id="@+id/spinnerPreference"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </TableRow>
+
+            <Button
+                android:id="@+id/btnAddPreference"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_style"
+                android:textColor="#ffffff"
+                android:text="ADD" />
+        </TableLayout>
+    </LinearLayout>
+</ScrollView>

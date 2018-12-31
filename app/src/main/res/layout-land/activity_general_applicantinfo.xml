@@ -7,57 +7,49 @@
         android:id="@+id/tvGladJoined"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="190dp"
         android:text="@string/glad_joined_applicant" />
 
     <TextView
         android:id="@+id/tvUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/tvGladJoined"
-        android:layout_alignStart="@+id/tvGladJoined"
-        android:layout_marginBottom="-26dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
         android:text="@string/putusernamehere_2" />
 
     <TextView
         android:id="@+id/tvFillOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvGladJoined"
-        android:layout_alignStart="@+id/tvGladJoined"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="40dp"
         android:text="@string/fill_out_applicant" />
 
     <TextView
         android:id="@+id/tvAverage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tvGladJoined"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="-8dp"
-        android:layout_marginTop="107dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="85dp"
         android:text="@string/bachelor_average_applicant" />
 
     <TextView
         android:id="@+id/tvProjectGrade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tvGladJoined"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="-7dp"
-        android:layout_marginTop="185dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="120dp"
         android:text="@string/final_project_grade" />
 
     <EditText
         android:id="@+id/etProjectGrade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvProjectGrade"
-        android:layout_alignEnd="@+id/spinnerFacultyWanted"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="100dp"
         android:ems="10"
         android:importantForAutofill="no"
         android:inputType="numberDecimal" />
@@ -66,40 +58,32 @@
         android:id="@+id/tvProjectNature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tvGladJoined"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="-6dp"
-        android:layout_marginBottom="242dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="160dp"
         android:text="@string/final_project_nature" />
 
     <Switch
         android:id="@+id/switchProjectNature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/tvProjectNature"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="-5dp"
-        android:layout_marginEnd="94dp"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="155dp"
         android:text="@string/research_2" />
 
     <TextView
         android:id="@+id/tvFacultyWanted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tvProjectNature"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="-1dp"
-        android:layout_marginBottom="183dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="200dp"
         android:text="@string/faculty_wanted" />
 
     <Spinner
         android:id="@+id/spinnerFacultyWanted"
         android:layout_width="253dp"
         android:layout_height="35dp"
-        android:layout_alignBottom="@+id/tvFacultyWanted"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="125dp"
-        android:layout_marginBottom="-6dp" />
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="190dp" />
 
     <Button
         android:id="@+id/btnNextStep"
@@ -107,18 +91,16 @@
         android:layout_height="wrap_content"
         android:background="@drawable/button_style"
         android:textColor="#ffffff"
-        android:layout_alignStart="@+id/etAverage"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginBottom="34dp"
+        android:layout_marginStart="485dp"
+        android:layout_marginTop="240dp"
         android:text="@string/next_step_2" />
 
     <EditText
         android:id="@+id/etAverage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvAverage"
-        android:layout_alignStart="@+id/etProjectGrade"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="65dp"
         android:autofillHints=""
         android:ems="10"
         android:inputType="number" />
