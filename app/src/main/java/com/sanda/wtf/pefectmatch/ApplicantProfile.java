@@ -94,36 +94,53 @@ public class ApplicantProfile extends AppCompatActivity {
         UpdateCourseGrades.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReference ref = mDatabase.child("ApplicantCourseGrades").child(String.valueOf(AppUser.getApplicantid()));
-                try {
-                    Integer First = Integer.parseInt(course_grade2.getText().toString());
-                    Integer Second = Integer.parseInt(course_grade4.getText().toString());
-                    Integer Third = Integer.parseInt(course_grade5.getText().toString());
-                    Integer Fourth = Integer.parseInt(course_grade3.getText().toString());
-                    Integer Fifth = Integer.parseInt(course_grade1.getText().toString());
-                    if (First < 0 || First > 100)
-                        Toast.makeText(ApplicantProfile.this, "First grade is incorrect", Toast.LENGTH_LONG).show();
-                    else
-                        ref.child("First").child("Grade").setValue(First);
-                    if (Second < 0 || Second > 100)
-                        Toast.makeText(ApplicantProfile.this, "Second grade is incorrect", Toast.LENGTH_LONG).show();
-                    else
-                        ref.child("Second").child("Grade").setValue(Second);
-                    if (Third < 0 || Third > 100)
-                        Toast.makeText(ApplicantProfile.this, "Third grade is incorrect", Toast.LENGTH_LONG).show();
-                    else
-                        ref.child("Third").child("Grade").setValue(Third);
-                    if (Fourth < 0 || Fourth > 100)
-                        Toast.makeText(ApplicantProfile.this, "Fourth grade is incorrect", Toast.LENGTH_LONG).show();
-                    else
-                        ref.child("Fourth").child("Grade").setValue(Fourth);
-                    if (Fifth < 0 || Fifth > 100)
-                        Toast.makeText(ApplicantProfile.this, "First grade is incorrect", Toast.LENGTH_LONG).show();
-                    else
-                        ref.child("Fifth").child("Grade").setValue(Fifth);
-                }catch (NumberFormatException e){
-                    Toast.makeText(ApplicantProfile.this, "You need enter only natural number", Toast.LENGTH_LONG).show();
-                }
+                DatabaseReference ref = mDatabase.child("Block_Dates").child("blockApplicants");
+                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        // This method is called once with the initial value and again
+                        // whenever data at this location is updated.
+                        String block_app = dataSnapshot.getValue().toString();
+                        if (block_app.equals("UNBLOCK")) {
+                            DatabaseReference ref = mDatabase.child("ApplicantCourseGrades").child(String.valueOf(AppUser.getApplicantid()));
+                            try {
+                                Integer First = Integer.parseInt(course_grade2.getText().toString());
+                                Integer Second = Integer.parseInt(course_grade4.getText().toString());
+                                Integer Third = Integer.parseInt(course_grade5.getText().toString());
+                                Integer Fourth = Integer.parseInt(course_grade3.getText().toString());
+                                Integer Fifth = Integer.parseInt(course_grade1.getText().toString());
+                                if (First < 0 || First > 100)
+                                    Toast.makeText(ApplicantProfile.this, "Second grade is incorrect", Toast.LENGTH_LONG).show();           //First in DB
+                                else
+                                    ref.child("First").child("Grade").setValue(First);
+                                if (Second < 0 || Second > 100)
+                                    Toast.makeText(ApplicantProfile.this, "Fourth grade is incorrect", Toast.LENGTH_LONG).show();           //Second in DB
+                                else
+                                    ref.child("Second").child("Grade").setValue(Second);
+                                if (Third < 0 || Third > 100)
+                                    Toast.makeText(ApplicantProfile.this, "Fifth grade is incorrect", Toast.LENGTH_LONG).show();        //Third in DB
+                                else
+                                    ref.child("Third").child("Grade").setValue(Third);
+                                if (Fourth < 0 || Fourth > 100)
+                                    Toast.makeText(ApplicantProfile.this, "Third grade is incorrect", Toast.LENGTH_LONG).show();        //Fourth in DB
+                                else
+                                    ref.child("Fourth").child("Grade").setValue(Fourth);
+                                if (Fifth < 0 || Fifth > 100)
+                                    Toast.makeText(ApplicantProfile.this, "First grade is incorrect", Toast.LENGTH_LONG).show();        //Fifth in DB
+                                else
+                                    ref.child("Fifth").child("Grade").setValue(Fifth);
+                            }catch (NumberFormatException e){
+                                Toast.makeText(ApplicantProfile.this, "You need enter only natural number", Toast.LENGTH_LONG).show();
+                            }
+                        }else{
+                            Toast.makeText(ApplicantProfile.this, "Algorithm it running! Please update after", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Log.e(TAG, "onCancelled", databaseError.toException());
+                    }
+                });
             }
         });
         //----------------------------------------UPDATE_GENERAL------------------------------------
@@ -131,25 +148,43 @@ public class ApplicantProfile extends AppCompatActivity {
         updateInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReference ref = mDatabase.child("Applicants").child(AppUser.getName());
-                Double _average = Double.parseDouble(average.getText().toString());
-                String _projectNature =  projectNature.getSelectedItem().toString();
-                int _projectGrade = -1;
-                try {
-                    _projectGrade = Integer.parseInt(projectGrade.getText().toString());
-                }catch(NumberFormatException e){
-                    Toast.makeText(ApplicantProfile.this, "New value of project grade is incorrect", Toast.LENGTH_LONG).show();
-                }
-                Log.e(TAG, _average+" "+_projectNature+" "+_projectGrade);
-                if (_average<0 || _average>100)
-                    Toast.makeText(ApplicantProfile.this, "New value of average is incorrect", Toast.LENGTH_LONG).show();
-                else
-                    ref.child("average").setValue(_average);
-                ref.child("projectNature").setValue(_projectNature);
-                if (_projectGrade<0 || _projectGrade>100)
-                    Toast.makeText(ApplicantProfile.this, "New value of project grade is incorrect", Toast.LENGTH_LONG).show();
-                else
-                    ref.child("projectGrade").setValue(_projectGrade);
+
+                DatabaseReference ref = mDatabase.child("Block_Dates").child("blockApplicants");
+                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        // This method is called once with the initial value and again
+                        // whenever data at this location is updated.
+                        String block_app = dataSnapshot.getValue().toString();
+                        if (block_app.equals("UNBLOCK")) {
+                            DatabaseReference ref = mDatabase.child("Applicants").child(AppUser.getName());
+                            Double _average = Double.parseDouble(average.getText().toString());
+                            String _projectNature =  projectNature.getSelectedItem().toString();
+                            int _projectGrade = -1;
+                            try {
+                                _projectGrade = Integer.parseInt(projectGrade.getText().toString());
+                            }catch(NumberFormatException e){
+                                Toast.makeText(ApplicantProfile.this, "New value of project grade is incorrect", Toast.LENGTH_LONG).show();
+                            }
+                            Log.e(TAG, _average+" "+_projectNature+" "+_projectGrade);
+                            if (_average<0 || _average>100)
+                                Toast.makeText(ApplicantProfile.this, "New value of average is incorrect", Toast.LENGTH_LONG).show();
+                            else
+                                ref.child("average").setValue(_average);
+                            ref.child("projectNature").setValue(_projectNature);
+                            if (_projectGrade<0 || _projectGrade>100)
+                                Toast.makeText(ApplicantProfile.this, "New value of project grade is incorrect", Toast.LENGTH_LONG).show();
+                            else
+                                ref.child("projectGrade").setValue(_projectGrade);
+                        }else{
+                            Toast.makeText(ApplicantProfile.this, "Algorithm it running! Please update after", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Log.e(TAG, "onCancelled", databaseError.toException());
+                    }
+                });
             }
         });
         //-----------------------------------------------------EXIT---------------------------------
