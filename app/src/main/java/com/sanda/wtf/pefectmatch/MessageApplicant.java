@@ -57,11 +57,11 @@ public class MessageApplicant extends AppCompatActivity {
         //match variables to fields in activity
         nextDate = findViewById(R.id.tvDate);
         uniName = findViewById(R.id.tvUniversityName);
-        //receive string from previous intent
+        //receive id from previous intent
         Intent i = getIntent();
         app_id = (String) i.getSerializableExtra("ID");
         //Extract data from firebase
-        DatabaseReference ref = mDatabase.child("ApplicantResults").child(app_id).child("YourUniversity");
+        DatabaseReference ref = mDatabase.child("ApplicantResults").child(app_id).child("YourUniversity"); //results table
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -69,13 +69,13 @@ public class MessageApplicant extends AppCompatActivity {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 if (dataSnapshot.exists()) {
-                    if (Objects.requireNonNull(dataSnapshot.getValue()).toString().equals("Fake"))
+                    if (Objects.requireNonNull(dataSnapshot.getValue()).toString().equals("Fake")) //if wasn't accepted to any university
                         uniName.setText("You have not been accepted to any university. Try again next time :(");
                     else
                         uniName.setText(dataSnapshot.getValue().toString());
                 }
                 else
-                    uniName.setText("No result");
+                    uniName.setText("No results yet."); //if algorithm didn't run yet
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -83,7 +83,7 @@ public class MessageApplicant extends AppCompatActivity {
             }
         });
         ref = mDatabase.child("Block_Dates").child("dateApplicants");
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() { //listen to any change of date!
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again

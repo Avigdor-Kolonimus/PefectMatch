@@ -44,16 +44,18 @@ import static java.lang.Double.*;
 
 public class ApplicantProfile extends AppCompatActivity {
     //variables
-    private static final String CHANNEL_ID = "my_channel_01";
+    private static final String CHANNEL_ID = "my_channel_01"; //for notification purposes
     //Defining all variables for this activity
     private Button exitButton;
     private Button updateInfo;           //btnUpdateGeneral
     private Button UpdateCourseGrades;   //btnUpdateCourseGrades
     private ImageButton mail;            //ibtnMail
     private static final String TAG = "ApplicantProfile";
+
     // [START declare_database_ref]
     private DatabaseReference mDatabase;
     // [END declare_database_ref]
+
     private Applicant AppUser; //Applicant object
 
     //Variables that show Applicant general data
@@ -83,12 +85,14 @@ public class ApplicantProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppUser = new Applicant(AuthenticatedUserHolder.instance.getAppUser().getPassword(),
-                AuthenticatedUserHolder.instance.getAppUser().getName());
+                AuthenticatedUserHolder.instance.getAppUser().getName()); //user
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_applicant_profile);
+
         // [START initialize_database_ref]
         mDatabase = FirebaseDatabase.getInstance().getReference();
         // [END initialize_database_ref]
+
         //----------------------------------------UPDATE_GRADES-------------------------------------
         UpdateCourseGrades = findViewById(R.id.btnUpdateCourseGrades);
         UpdateCourseGrades.setOnClickListener(new View.OnClickListener() {
@@ -101,39 +105,39 @@ public class ApplicantProfile extends AppCompatActivity {
                         // This method is called once with the initial value and again
                         // whenever data at this location is updated.
                         String block_app = dataSnapshot.getValue().toString();
-                        if (block_app.equals("UNBLOCK")) {
+                        if (block_app.equals("UNBLOCK")) { //if unblocked, applicant may update profile
                             DatabaseReference ref = mDatabase.child("ApplicantCourseGrades").child(String.valueOf(AppUser.getApplicantid()));
-                            try {
+                            try { //update grades in firebase
                                 Integer First = Integer.parseInt(course_grade2.getText().toString());
                                 Integer Second = Integer.parseInt(course_grade4.getText().toString());
                                 Integer Third = Integer.parseInt(course_grade5.getText().toString());
                                 Integer Fourth = Integer.parseInt(course_grade3.getText().toString());
                                 Integer Fifth = Integer.parseInt(course_grade1.getText().toString());
-                                if (First < 0 || First > 100)
+                                if (First < 0 || First > 100) //check for legal grade
                                     Toast.makeText(ApplicantProfile.this, "Second grade is incorrect", Toast.LENGTH_LONG).show();           //First in DB
                                 else
                                     ref.child("First").child("Grade").setValue(First);
-                                if (Second < 0 || Second > 100)
+                                if (Second < 0 || Second > 100) //check for legal grade
                                     Toast.makeText(ApplicantProfile.this, "Fourth grade is incorrect", Toast.LENGTH_LONG).show();           //Second in DB
                                 else
                                     ref.child("Second").child("Grade").setValue(Second);
-                                if (Third < 0 || Third > 100)
+                                if (Third < 0 || Third > 100) //check for legal grade
                                     Toast.makeText(ApplicantProfile.this, "Fifth grade is incorrect", Toast.LENGTH_LONG).show();        //Third in DB
                                 else
                                     ref.child("Third").child("Grade").setValue(Third);
-                                if (Fourth < 0 || Fourth > 100)
+                                if (Fourth < 0 || Fourth > 100) //check for legal grade
                                     Toast.makeText(ApplicantProfile.this, "Third grade is incorrect", Toast.LENGTH_LONG).show();        //Fourth in DB
                                 else
                                     ref.child("Fourth").child("Grade").setValue(Fourth);
-                                if (Fifth < 0 || Fifth > 100)
+                                if (Fifth < 0 || Fifth > 100) //check for legal grade
                                     Toast.makeText(ApplicantProfile.this, "First grade is incorrect", Toast.LENGTH_LONG).show();        //Fifth in DB
                                 else
                                     ref.child("Fifth").child("Grade").setValue(Fifth);
                             }catch (NumberFormatException e){
-                                Toast.makeText(ApplicantProfile.this, "You need enter only natural number", Toast.LENGTH_LONG).show();
+                                Toast.makeText(ApplicantProfile.this, "You must enter only natural numbers", Toast.LENGTH_LONG).show();
                             }
                         }else{
-                            Toast.makeText(ApplicantProfile.this, "Algorithm it running! Please update after", Toast.LENGTH_LONG).show();
+                            Toast.makeText(ApplicantProfile.this, "Algorithm it running! Please update another time.", Toast.LENGTH_LONG).show();
                         }
                     }
                     @Override
@@ -156,23 +160,23 @@ public class ApplicantProfile extends AppCompatActivity {
                         // This method is called once with the initial value and again
                         // whenever data at this location is updated.
                         String block_app = dataSnapshot.getValue().toString();
-                        if (block_app.equals("UNBLOCK")) {
+                        if (block_app.equals("UNBLOCK")) { //if unblocked, applicant may update profile
                             DatabaseReference ref = mDatabase.child("Applicants").child(AppUser.getName());
                             Double _average = Double.parseDouble(average.getText().toString());
                             String _projectNature =  projectNature.getSelectedItem().toString();
-                            int _projectGrade = -1;
+                            int _projectGrade = -1; //holds value temporarily
                             try {
-                                _projectGrade = Integer.parseInt(projectGrade.getText().toString());
+                                _projectGrade = Integer.parseInt(projectGrade.getText().toString()); //parse project grade ///////////////////////////////////////////
                             }catch(NumberFormatException e){
                                 Toast.makeText(ApplicantProfile.this, "New value of project grade is incorrect", Toast.LENGTH_LONG).show();
                             }
                             Log.e(TAG, _average+" "+_projectNature+" "+_projectGrade);
-                            if (_average<0 || _average>100)
-                                Toast.makeText(ApplicantProfile.this, "New value of average is incorrect", Toast.LENGTH_LONG).show();
+                            if (_average<0 || _average>100) //check fo legal average
+                                Toast.makeText(ApplicantProfile.this, "New value of average is incorrect", Toast.LENGTH_LONG).show(); //illegal - message
                             else
-                                ref.child("average").setValue(_average);
-                            ref.child("projectNature").setValue(_projectNature);
-                            if (_projectGrade<0 || _projectGrade>100)
+                                ref.child("average").setValue(_average); //legal - set
+                            ref.child("projectNature").setValue(_projectNature); //set project nature (no need to check input)
+                            if (_projectGrade<0 || _projectGrade>100) //check project grade input
                                 Toast.makeText(ApplicantProfile.this, "New value of project grade is incorrect", Toast.LENGTH_LONG).show();
                             else
                                 ref.child("projectGrade").setValue(_projectGrade);
@@ -194,7 +198,7 @@ public class ApplicantProfile extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(ApplicantProfile.this, "Goodbye! Hope to see you back soon!", Toast.LENGTH_LONG).show();
                 AuthenticatedUserHolder.instance.setAppUser(null);
-                Intent intent = new Intent(ApplicantProfile.this ,Home.class);
+                Intent intent = new Intent(ApplicantProfile.this ,Home.class); //pass to home screen intent
                 startActivity(intent);
             }
         });
@@ -203,12 +207,12 @@ public class ApplicantProfile extends AppCompatActivity {
         average = findViewById(R.id.etAverage);
         //------------------------------------------------SPINNER-----------------------------------
         projectNature = findViewById(R.id.spinner);
-        String[] arraySpinner = new String[] {
+        String[] arraySpinner = new String[] { //values for project nature spinner
                 "Research", "Non-Research"
         };
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, arraySpinner);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); //set to spinner
         projectNature.setAdapter(adapter);
         //-----------------------------------------------------MAIL---------------------------------
         mail = findViewById(R.id.ibtnMail);
@@ -216,7 +220,7 @@ public class ApplicantProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ApplicantProfile.this ,MessageApplicant.class);
-                intent.putExtra("ID", app_id);
+                intent.putExtra("ID", app_id); //pass to messages of specific user with his id
                 startActivity(intent);
             }
         });
@@ -244,7 +248,7 @@ public class ApplicantProfile extends AppCompatActivity {
         getApplicantData();
     }
 
-    //Get data from course grades table
+    //Get data from course grades table to present it in profile
     protected void getCourseGrades(){
         Log.e(TAG, "Applicant ID in getCourseGrades "+ AppUser.getApplicantid());
         DatabaseReference ref = mDatabase.child("ApplicantCourseGrades").child(String.valueOf(AppUser.getApplicantid()));
@@ -257,16 +261,16 @@ public class ApplicantProfile extends AppCompatActivity {
                 int grade;
                 int i = 0;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    //depending upon what data type you are using caste to it.
+                    //depending upon what data type you are using, cast to it.
                     course = Objects.requireNonNull(snapshot.child("Course").getValue()).toString();
                     grade = Integer.parseInt(Objects.requireNonNull(snapshot.child("Grade").getValue()).toString());
-                    courses[i] = new CourseGrade(course, grade);
+                    courses[i] = new CourseGrade(course, grade); //add do CourseGrade object into courses
                     i++;
                     Log.e(TAG, "Course "+i+" "+ course);
                     Log.e(TAG, "Grade "+i+" "+ grade);
                 }
 
-                //Show data in applicant profile
+                //Show data in applicant profile in matching fields
                 course1.setText(courses[0].getCourse());
                 course2.setText(courses[1].getCourse());
                 course3.setText(courses[2].getCourse());
@@ -285,7 +289,7 @@ public class ApplicantProfile extends AppCompatActivity {
         });
 
     }
-    //Get data from applicant table
+    //Get data from applicant table (general info)
     protected void getApplicantData(){
         Log.e(TAG, "User Name in getApplicantData "+ AppUser.getName());
         DatabaseReference ref = mDatabase.child("Applicants").child(AppUser.getName());
@@ -297,8 +301,8 @@ public class ApplicantProfile extends AppCompatActivity {
                 String[] value = new String[10];
                 int i=0;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    //depending upon what data type you are using caste to it.
-                    value[i] = Objects.requireNonNull(snapshot.getValue()).toString();
+                    //depending upon what data type you are using, cast to it.
+                    value[i] = Objects.requireNonNull(snapshot.getValue()).toString(); //insert info into values array
                     i++;
                 }
                 //log for data
@@ -322,7 +326,7 @@ public class ApplicantProfile extends AppCompatActivity {
                 AppUser.updateProjectNature(value[7]);
                 //value[8] - Rank does not show in profile
 
-                //Show data in applicant profile
+                //Show data in applicant profile in matching fields
                 faculty.setText(AppUser.getFaculty());
                 average.setText(String.valueOf(AppUser.getAverage()));
                 if (value[7].equals("Research"))
@@ -338,30 +342,31 @@ public class ApplicantProfile extends AppCompatActivity {
             }
         });
     }
-    //the function of notification
+    //function for notification
     public void testNoti(){
         int NOTIFICATION_ID = 234;
-        NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE); //open notification service
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             CharSequence name = "my_channel";
             String Description = "This is my channel";
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
+            int importance = NotificationManager.IMPORTANCE_HIGH; //notification importance
+            NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance); //defining channel for notification
             mChannel.setDescription(Description);
-            mChannel.enableLights(true);
-            mChannel.setLightColor(Color.RED);
-            mChannel.enableVibration(true);
-            mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
-            mChannel.setShowBadge(false);
+            mChannel.enableLights(true); //lights
+            mChannel.setLightColor(Color.RED); //light color
+            mChannel.enableVibration(true); //vibrate
+            mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400}); //vibration pattern
+            mChannel.setShowBadge(false); //don't appear as badge in application
             notificationManager.createNotificationChannel(mChannel);
         }
-
+        //the notification itself
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_splash)
                 .setContentTitle("Perfect Match - Results Arrived")
                 .setContentText("You got your result! Click here!");
 
+        //notification ti relevant intent
         Intent resultIntent = new Intent(this, MessageApplicant.class);
         resultIntent.putExtra("ID", app_id);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);

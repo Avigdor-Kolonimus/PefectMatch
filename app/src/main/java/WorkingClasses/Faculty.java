@@ -22,33 +22,33 @@ public class Faculty {
     protected Map<String, Double> formulaWeights=new HashMap<String, Double>();;			//list with grade weight
     protected List<Applicant> applicants=new ArrayList<Applicant>();						//list of applicants
     /**
-     * constructor of faculty
+     * empty constructor of faculty
      */
     public Faculty() {
     }
     /**
-     * the getter facultyName
+     * getter facultyName
      * @return faculty name
      */
     public String getFacultyName() {
         return facultyName;
     }
     /**
-     * the setter facultyName
+     * setter facultyName
      * @param facultyName - faculty name
      */
     public void setFacultyName(String facultyName) {
         this.facultyName = facultyName;
     }
     /**
-     * the getter minAverage
+     * getter minAverage
      * @return minimum average
      */
     public int getMinAverage() {
         return minAverage;
     }
     /**
-     * the update minAverage
+     * update minAverage
      * @param minAverage - minimum average for faculty
      * @return true, if it was able to update; false, otherwise
      */
@@ -57,7 +57,7 @@ public class Faculty {
         return true;
     }
     /**
-     * the getter project nature
+     * getter project nature
      * @return true, if faculty requires nature project from applicant
      */
     public boolean isProjectNatureBoolean() {
@@ -66,7 +66,7 @@ public class Faculty {
         return false;
     }
     /**
-     * the update projectNature
+     * update projectNature
      * @param projectNature - new value projectNature
      * @return  faculty requires nature project from applicant
      */
@@ -75,14 +75,14 @@ public class Faculty {
         return true;
     }
     /**
-     * the getter projectGrade
+     * getter projectGrade
      * @return minimum project grade that faculty requires
      */
     public int getProjectGrade() {
         return projectGrade;
     }
     /**
-     * the update projectGrade
+     * update projectGrade
      * @param projectGrade - new minimum project grade of faculty
      * @return true, if it was able to update; false, otherwise
      */
@@ -91,14 +91,14 @@ public class Faculty {
         return true;
     }
     /**
-     * the function getter numOfApplicant
+     * function getter numOfApplicant
      * @return numOfApplicant
      */
     public int getNumOfApplicants() {
         return numOfApplicants;
     }
     /**
-     * the update numOfApplicant
+     * update numOfApplicant
      * @param numOfApplicants - new numberr of applicant for faculty
      * @return true, if it was able to update; false, otherwise
      */
@@ -107,14 +107,14 @@ public class Faculty {
         return true;
     }
     /**
-     * the getter minGrades
+     * getter minGrades
      * @return list of minimum grades of course
      */
     public Map<String, Integer> getMinGrades() {
         return minGrades;
     }
     /**
-     * the update minGrades
+     * update minGrades
      * @param minGrades - new minimum grades for cource
      * @return true, if it was able to update; false, otherwise
      */
@@ -124,14 +124,14 @@ public class Faculty {
         return true;
     }
     /**
-     * the getter formulaWeights
+     * getter formulaWeights
      * @return list of weights of grades
      */
     public Map<String, Double> getFormulaWeights() {
         return formulaWeights;
     }
     /**
-     * the update formulaWeights
+     * update formulaWeights
      * @param formulaWeights - new weights of grades
      */
     public void updateFormulaWeights(HashMap<String, Double> formulaWeights) {
@@ -139,14 +139,14 @@ public class Faculty {
         this.formulaWeights = (HashMap)formulaWeights.clone();
     }
     /**
-     * the getter applicants
+     * getter applicants
      * @return list of applicants in faculty
      */
     public List<Applicant> getApplicants() {
         return applicants;
     }
     /**
-     * the setter applicants
+     * setter applicants
      * @param applicants new list of applicants for faculty
      */
     public void setApplicants(ArrayList<Applicant> applicants) {
@@ -154,7 +154,7 @@ public class Faculty {
         this.applicants = (ArrayList) applicants.clone();
     }
     /**
-     * the function adds new applicant to list
+     * function adds new applicant to list
      * @param _newApplicant - new applicant
      * @return true, if it was able to update; false, otherwise
      */
@@ -163,7 +163,7 @@ public class Faculty {
         return true;
     }
     /**
-     * the function removes applicant to list
+     * function removes applicant to list
      * @param _oldApplicant - applicant that we need remove
      * @return true, if it was able to update; false, otherwise
      */
@@ -172,7 +172,7 @@ public class Faculty {
         return true;
     }
     /**
-     * the update minGrades
+     * update minGrades
      * @param _course - name of course
      * @param _grade - grade of course
      * @return true, if it was able to update; false, otherwise
@@ -182,7 +182,7 @@ public class Faculty {
         return true;
     }
     /**
-     * the update formulaWeights
+     * update formulaWeights
      * @param _course - name of course
      * @param _weight - weight of course
      * @return true, if it was able to update; false, otherwise

@@ -22,28 +22,28 @@ public class University extends User{
         super(_passwd, _login, "University");
     }
     /**
-     * the getter for universityName
+     * getter for universityName
      * @return universityName
      */
     public String getUniversityName() {
         return universityName;
     }
     /**
-     * the setter for universityName
+     * setter for universityName
      * @param universityName - new university name
      */
     public void setUniversityName(String universityName) {
         this.universityName = universityName;
     }
     /**
-     * the getter for facultyList
+     * getter for facultyList
      * @return list of faculties in the university
      */
     public List getFacultyList() {
         return facultyList;
     }
     /**
-     * the setter for facultyList
+     * setter for facultyList
      * @param facultyList - new faculty list
      */
     public void setFacultyList(ArrayList<Faculty> facultyList) {
@@ -51,21 +51,21 @@ public class University extends User{
         this.facultyList = (ArrayList)facultyList.clone();
     }
     /**
-     * the getter for NumOfFaculties
+     * getter for NumOfFaculties
      * @return
      */
     public int getNumOfFaculties() {
         return numOfFaculties;
     }
     /**
-     * the setter for NumOfFaculties
+     * setter for NumOfFaculties
      * @param numOfFaculties - new number of faculties
      */
     public void setNumOfFaculties(int numOfFaculties) {
         this.numOfFaculties = numOfFaculties;
     }
     /**
-     * the function adds new faculty to list
+     * function adds new faculty to list
      * @param _newFaculty - new faculty
      * @return true, if it was able to update; false, otherwise
      */
@@ -75,7 +75,7 @@ public class University extends User{
         return true;
     }
     /**
-     * the function removes faculty from list
+     * function removes faculty from list
      * @param _oldFaculty - faculty for remove
      * @return true, if it was able to update; false, otherwise
      */

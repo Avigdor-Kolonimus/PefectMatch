@@ -11,17 +11,17 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 @SuppressWarnings("serial") //With this annotation we are going to hide compiler warnings
-public class Applicant extends User implements Serializable {
+public class Applicant extends User implements Serializable { //serializable in order to pass Applicant between intents
     //variables
-    private String projectNature;			//true, applicant has nature project
+    private String projectNature;			//true, applicant has research nature project
     private int projectGrade;				//project grade
     private String applicantName;			//name of applicant
     private int applicantid;				//id of applicant
     private double average;					//average of grades from Bachelor degree
     private Map<String, Integer> courseGrades = new HashMap<String, Integer>();				//list of grades
     private Map<Integer, String> preferencerList = new HashMap<Integer, String>();			//preference list of university
-    public double rank;						//rank of applicant for calculate
-    private String faculty;					//faculty where applicant want study
+    public double rank;						//rank of applicant for calculating needs
+    private String faculty;					//faculty applicant is interested in
     public int preferencer=1; 				//index for preference list
     /**
      * constructor of applicant
@@ -42,7 +42,7 @@ public class Applicant extends User implements Serializable {
         return true;
     }
     /**
-     * the getter projectNature
+     * getter for projectNature
      * @return Research, if applicant has nature project
      */
     public String isProjectNature() {
@@ -54,15 +54,15 @@ public class Applicant extends User implements Serializable {
         return false;
     }
     /**
-     * the getter faculty
+     * getter for faculty
      * @return name of faculty where applicant want study
      */
     public String getFaculty() {
         return faculty;
     }
     /**
-     * the update faculty
-     * @param faculty - new faculty where applicant want study
+     * update faculty
+     * @param faculty - new faculty applicant is interested in
      * @return true, if it was able to update; false, otherwise
      */
     public boolean updateFaculty(String faculty) {
@@ -70,14 +70,14 @@ public class Applicant extends User implements Serializable {
         return true;
     }
     /**
-     * the setter projectNature
+     * setter projectNature
      * @param projectNature - Research, if applicant has nature project
      */
     public void setProjectNature(String projectNature) {
         this.projectNature = projectNature;
     }
     /**
-     * the update projectNature
+     * update projectNature
      * @param projectNature - true, if applicant has nature project
      * @return true, if it was able to update; false, otherwise
      */
@@ -86,14 +86,14 @@ public class Applicant extends User implements Serializable {
         return true;
     }
     /**
-     * the get projectNature
+     * get projectNature
      * @return projectNature of Applicant object
      */
     public String getProjectNature(){
         return this.projectNature;
     }
     /**
-     * the getter projectGrade
+     * getter projectGrade
      * @return grade of project
      */
     public int getProjectGrade() {

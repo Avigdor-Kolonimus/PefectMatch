@@ -61,7 +61,7 @@ public class Algorithm {
      */
     private boolean checkMin(Map<String, Integer> minGrades,Map<String, Integer> Grades, int minAverage, double Average, boolean minProjectNature, boolean ProjectNature) {
         try {
-            if (minProjectNature && !ProjectNature)						//need project nature, but applicant have not
+            if (minProjectNature && !ProjectNature)						//needs project nature, but applicant doesn't have it
                 return false;
             if (Average<minAverage)										//average is less than the lower bound
                 return false;
@@ -104,7 +104,7 @@ public class Algorithm {
             }
             //-------------------------------------------------------REMOVE APPLICANT--------------------------------------
             for (Map.Entry<String, Faculty> entry : uF.entrySet()) {
-                Collections.sort(entry.getValue().getApplicants(), Applicant.AppRankComparator);
+                Collections.sort(entry.getValue().getApplicants(), Applicant.AppRankComparator); //Overrides the collections to match our needs (in Applicant class)
                 int _bound = entry.getValue().getNumOfApplicants();
                 int _size = entry.getValue().getApplicants().size();
                 if (_bound<_size)
@@ -126,7 +126,7 @@ public class Algorithm {
                 ref.child("ApplicantResults").child(String.valueOf(app.getApplicantid()))
                         .child("YourUniversity").setValue(entry.getKey());
                 ref.child("Notification").child(String.valueOf(app.getApplicantid()))
-                        .child("Messege").setValue(1);
+                        .child("Message").setValue(1);
             });
             result.put(entry.getKey()+" "+entry.getValue().getFacultyName(), entry.getValue().getApplicants());
         }

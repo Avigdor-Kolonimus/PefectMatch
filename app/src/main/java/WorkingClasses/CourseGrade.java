@@ -8,7 +8,7 @@ package WorkingClasses;
 //library
 import java.io.Serializable;
 @SuppressWarnings("serial") //With this annotation we are going to hide compiler warnings
-public class CourseGrade implements Serializable {
+public class CourseGrade implements Serializable { //serializable in order to pass CourseGrade between intents
     //variables
     private String course;
     private int grade;
@@ -35,6 +35,7 @@ public class CourseGrade implements Serializable {
     public void setCourse(String course){
         this.course = course;
     }
+
     //getter and setter of grade
     public int getGrade(){
         return this.grade;

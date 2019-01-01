@@ -5,7 +5,7 @@ package com.sanda.wtf.pefectmatch;
  * @date 12.2018
  * @version 3.0
  */
-//libraries
+//libraries - by groups
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -39,16 +39,16 @@ import WorkingClasses.User;
 public class PreferencesApplicantInfo extends AppCompatActivity {
     //variables
     private Applicant current;
-    private CourseGrade courses[] = new CourseGrade[5];
+    private CourseGrade courses[] = new CourseGrade[5]; //five courses matching requirements
     private String faculty = "";
-    private ArrayList<String> arraySpinnerUniversity = new ArrayList<String>();
-    private ArrayList<String> arraySpinnerPreference = new ArrayList<String>();
-    private Map<Integer,String> preferenceList = new HashMap<Integer, String>();
+    private ArrayList<String> arraySpinnerUniversity = new ArrayList<String>(); //array for university ranking spinner
+    private ArrayList<String> arraySpinnerPreference = new ArrayList<String>(); //array for preference ranking spinner
+    private Map<Integer,String> preferenceList = new HashMap<Integer, String>(); //to hold final list of preferences
     private Spinner university; //spinnerUniversity
     private Spinner preference; //spinnerPreference
     private Button addPreference; //btnAddPreference
-    private ArrayAdapter<String> adapterUniversity;
-    private ArrayAdapter<String> adapterPreference;
+    private ArrayAdapter<String> adapterUniversity; //adapter for university ranking spinner
+    private ArrayAdapter<String> adapterPreference; //adapter for university ranking spinner
     private TableLayout preferenceTable; //table
     //TAG for messages
     private static final String TAG = "PreferencesApplicantInfo";
@@ -70,9 +70,9 @@ public class PreferencesApplicantInfo extends AppCompatActivity {
         preferenceTable = findViewById(R.id.table);
         //receive Applicant & CourseGrade objects from previous intent
         Intent i = getIntent();
-        current = (Applicant) i.getSerializableExtra("Applicant");
-        courses = (CourseGrade[]) i.getSerializableExtra("CourseGrade");
-        faculty = current.getFaculty();
+        current = (Applicant) i.getSerializableExtra("Applicant"); //Applicant into current
+        courses = (CourseGrade[]) i.getSerializableExtra("CourseGrade"); //CourseGrade array into courses
+        faculty = current.getFaculty();  //faculty wanted in order to match relevant universities
         getUniversityList();
 
         //-------------------------------------------ADD PREFERENCE---------------------------------
@@ -84,8 +84,7 @@ public class PreferencesApplicantInfo extends AppCompatActivity {
                     Toast.makeText(PreferencesApplicantInfo.this, "Adding preference to list!", Toast.LENGTH_LONG).show();
                     String uni = university.getSelectedItem().toString();
                     String pref = preference.getSelectedItem().toString();
-                    // Remove item/element from List index zero
-                    // Remove first item of List
+                    // Remove item/element from List by index chosen
                     arraySpinnerUniversity.remove(uni);
                     adapterUniversity.notifyDataSetChanged();
                     arraySpinnerPreference.remove(pref);
@@ -109,10 +108,10 @@ public class PreferencesApplicantInfo extends AppCompatActivity {
                     row.addView(universityPreference); // create column with current preference
 
                     preferenceTable.addView(row); // Add row to table
-                    preferenceList.put(Integer.parseInt(pref),uni);
-                    if (arraySpinnerUniversity.size()==0) {
-                        preferenceList.put(preferenceList.size()+1,"Fake");
-                        addPreference.setText("Finish");
+                    preferenceList.put(Integer.parseInt(pref),uni); //add to final list of preferences
+                    if (arraySpinnerUniversity.size()==0) { //if all options were ranked
+                        preferenceList.put(preferenceList.size()+1,"Fake"); //add fake university for algorithm's needs
+                        addPreference.setText("Finish"); //change text in button
                     }
                 }
                 else{

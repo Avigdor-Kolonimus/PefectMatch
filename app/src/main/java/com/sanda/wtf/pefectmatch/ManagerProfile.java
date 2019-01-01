@@ -53,38 +53,42 @@ public class ManagerProfile extends AppCompatActivity{
     private TextView blockDate;
     private TextView blockDateUniversities;
     private TextView blockDateApplicants;
+
     // [START declare_database_ref]
     private DatabaseReference mDatabase;
     // [END declare_database_ref]
+
     private static final String TAG = "ManagerProfile";
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private int WhereblockDate;                                     //1 - University, 2 - Applicant
     private User AdminUser;                                         //user that is connected
-    private boolean permission = false;
-    private String blockORunblockApplicant;
-    private String blockORunblockUniversity;
-    private final ArrayList<Applicant> ap = new ArrayList<Applicant>();
-    private final Map<String, Faculty> u = new HashMap<String,Faculty>();
+    private boolean permission = false;                             //if manager can run algorithm
+    private String blockORunblockApplicant;                         //holds current value
+    private String blockORunblockUniversity;                        //holds current value
+    private final ArrayList<Applicant> ap = new ArrayList<Applicant>();     //Applicant list (to hold data from various tables)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         WhereblockDate = 0;
         AdminUser = AuthenticatedUserHolder.instance.getAppUser();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager);
+
         // [START initialize_database_ref]
         mDatabase = FirebaseDatabase.getInstance().getReference();
         // [END initialize_database_ref]
+
         //----------------------------------------------------DATE----------------------------------
         blockDate = findViewById(R.id.tvNextDate);
         blockDateUniversities = findViewById(R.id.tvBlockingUniversities);
         blockDateUniversities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Calendar cal = Calendar.getInstance();
+                Calendar cal = Calendar.getInstance(); //get today's date
                 int year = cal.get(Calendar.YEAR);
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog dialog = new DatePickerDialog(
+                DatePickerDialog dialog = new DatePickerDialog( //builds dialog
                         ManagerProfile.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         mDateSetListener,
@@ -98,11 +102,11 @@ public class ManagerProfile extends AppCompatActivity{
         blockDateApplicants.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Calendar cal = Calendar.getInstance();
+                Calendar cal = Calendar.getInstance(); //get today's date
                 int year = cal.get(Calendar.YEAR);
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog dialog = new DatePickerDialog(
+                DatePickerDialog dialog = new DatePickerDialog( //builds dialog
                         ManagerProfile.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         mDateSetListener,
@@ -113,31 +117,34 @@ public class ManagerProfile extends AppCompatActivity{
             }
         });
         //---------------------------------------------------DIALOG---------------------------------
+        //operates dialog with value inserted
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
                 Log.d(TAG, "onDateSet: dd/mm/yyy: " + day + "/" + month + "/" + year);
                 String date = day + "/" + month + "/" + year;
-                if (WhereblockDate == 1)
+                if (WhereblockDate == 1) //university
                     if (compareDate(blockDate.getText().toString(), date))
                         blockDateUniversities.setText(date);
                     else
-                        Toast.makeText(ManagerProfile.this, "You need enter date before "+blockDate.getText().toString(), Toast.LENGTH_LONG).show();
-                else {
+                        Toast.makeText(ManagerProfile.this, "You need to enter a date before "+blockDate.getText().toString(), Toast.LENGTH_LONG).show();
+                else { //applicant
                     if (compareDate(date, blockDateUniversities.getText().toString())){
                         blockDate.setText(date);
                         blockDateApplicants.setText(date);
                     }else
-                        Toast.makeText(ManagerProfile.this, "You need enter date after "+blockDateUniversities.getText().toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ManagerProfile.this, "You need to enter a date after "+blockDateUniversities.getText().toString(), Toast.LENGTH_LONG).show();
                 }
             }
         };
+
         //call getDataManager to present data from db in manager profile
         getDataManager();
         //call checkPermission to check if user has permission to update data
         checkPermission();
-        //-------------------------------------------------UPDATE DATEs-----------------------------
+
+        //-------------------------------------------------UPDATE DATES-----------------------------
         updateDates = findViewById(R.id.btnUpdateDate);
         updateDates.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,9 +167,9 @@ public class ManagerProfile extends AppCompatActivity{
             public void onClick(View v) {
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
                 if (permission) {
-                    blockORunblockApplicant = changeblockORunblock(blockORunblockApplicant);
+                    blockORunblockApplicant = changeblockORunblock(blockORunblockApplicant); //change value
                     ref.child("Block_Dates").child("blockApplicants")
-                            .setValue(blockORunblockApplicant);
+                            .setValue(blockORunblockApplicant); //set to changed value
                     blockApplicants.setText(blockORunblockApplicant);
                 }else
                     Toast.makeText(ManagerProfile.this, "You are not the manager!", Toast.LENGTH_LONG).show();
@@ -175,23 +182,23 @@ public class ManagerProfile extends AppCompatActivity{
             public void onClick(View v) {
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
                 if (permission) {
-                    blockORunblockUniversity = changeblockORunblock(blockORunblockUniversity);
+                    blockORunblockUniversity = changeblockORunblock(blockORunblockUniversity); //change value
                     ref.child("Block_Dates").child("blockUniversities")
-                            .setValue(blockORunblockUniversity);
+                            .setValue(blockORunblockUniversity); //set to changed value
                     blockUniversities.setText(blockORunblockUniversity);
                 }else
                     Toast.makeText(ManagerProfile.this, "You are not the manager!", Toast.LENGTH_LONG).show();
             }
         });
-        //-----------------------------------------------------RUN---------------------------------
+        //-----------------------------------------------------RUN----------------------------------
         runAlgorithm = findViewById(R.id.btnRunAlgorithm);
         runAlgorithm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "blockApplicants: " + blockORunblockApplicant+" blockUniversities: "+ blockORunblockUniversity);
-                if (blockORunblockApplicant.equals("BLOCK") && blockORunblockUniversity.equals("BLOCK")) {
+                if (blockORunblockApplicant.equals("BLOCK") && blockORunblockUniversity.equals("BLOCK")) { //if both blocked
                     Toast.makeText(ManagerProfile.this, "Start", Toast.LENGTH_LONG).show();
-                    runAlgorithm.setEnabled(false);
+                    runAlgorithm.setEnabled(false); //run algorithm
                     runAlgorithm();
                 }else{
                     Toast.makeText(ManagerProfile.this, "Applicants and universities should be blocked in order to run algorithm!!", Toast.LENGTH_LONG).show();
@@ -231,19 +238,19 @@ public class ManagerProfile extends AppCompatActivity{
         String[] value = new String[4];
         int i=0;
         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-            //depending upon what data type you are using caste to it.
+            //depending upon what data type you are using, cast to it.
             value[i] = snapshot.getValue(String.class);
             i++;
         }
-        blockDate.setText(value[2]);
-        blockDateUniversities.setText(value[3]);
-        blockDateApplicants.setText(value[2]);
+        blockDate.setText(value[2]); //date to display at page (next calculation)
+        blockDateUniversities.setText(value[3]); //blocking date universities
+        blockDateApplicants.setText(value[2]); //blocking date applicants
 
-        blockORunblockApplicant = value[0];
+        blockORunblockApplicant = value[0]; //block value applicant
         blockApplicants.setText(blockORunblockApplicant);
-
-        blockORunblockUniversity = value[1];
+        blockORunblockUniversity = value[1]; //block value university
         blockUniversities.setText(blockORunblockUniversity);
+
         //display all the information
         Log.d(TAG, "showData: applicants blocked: " + value[0]);
         Log.d(TAG, "showData: universities blocked: " + value[1]);
@@ -261,7 +268,8 @@ public class ManagerProfile extends AppCompatActivity{
         }
         return false;
     }
-    //the function check if user is manager
+
+    //this function checks if user connected is the manager
     protected void checkPermission(){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
         ref.child("Users").child("Manager").child("username")
@@ -280,12 +288,14 @@ public class ManagerProfile extends AppCompatActivity{
                     }
                 });
     }
+
     //change value of blockORunblockApplicant
     protected String changeblockORunblock(String s){
         if (s.equals("BLOCK"))
             return "UNBLOCK";
          return "BLOCK";
     }
+
     //algorithm for perfect match
     protected void runAlgorithm() {
         //connect to firebase
@@ -294,6 +304,7 @@ public class ManagerProfile extends AppCompatActivity{
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        //insert data to applicant object
                         Applicant NewApp = null;
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             NewApp = new Applicant(snapshot.child("password").getValue().toString(), snapshot.child("username").getValue().toString());
@@ -305,6 +316,7 @@ public class ManagerProfile extends AppCompatActivity{
                             NewApp.setProjectNature(snapshot.child("projectNature").getValue().toString());
                             ap.add(NewApp);
                         }
+                        //get applicant grades
                         getGrades();
                     }
                     @Override
@@ -314,7 +326,8 @@ public class ManagerProfile extends AppCompatActivity{
                 }
         );
 }
-//the function getter grades for application
+
+//get grades for applicant
 protected void getGrades(){
     //connect to firebase
     DatabaseReference db = FirebaseDatabase.getInstance().getReference();
@@ -323,6 +336,7 @@ protected void getGrades(){
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        //add courses
                         ap.forEach(app -> {
                             if (String.valueOf(app.getApplicantid()).equals(snapshot.getKey())){
                                 app.addCourseGrades(snapshot.child("First").child("Course").getValue().toString(),
@@ -356,6 +370,7 @@ protected void getPreference(){
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                        //add preferences
                         ap.forEach(app -> {
                             if (String.valueOf(app.getApplicantid()).equals(snapshot.getKey())){
                                 int i = 1;
@@ -377,7 +392,7 @@ protected void getPreference(){
             }
     );
 }
-    //the function getter data for university
+    //this function gets university data
     protected void getUniversity(){
         //connect to firebase
         DatabaseReference db = FirebaseDatabase.getInstance().getReference();
@@ -385,6 +400,7 @@ protected void getPreference(){
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        //from all applicant list chooses by faculty
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                             String department = snapshot.getKey();
                             ArrayList<Applicant> CalculateApplicant = new ArrayList<Applicant>();
@@ -393,6 +409,7 @@ protected void getPreference(){
                                     CalculateApplicant.add(app);
                                 }
                             });
+                            //update all faculty data
                             final Map<String, Faculty> u = new HashMap<String,Faculty>();
                             for(DataSnapshot snapshot2 : dataSnapshot.child(department).getChildren()){
                                 Faculty fac = new Faculty();
@@ -430,13 +447,14 @@ protected void getPreference(){
                                 //------------------------------------------------------------------------------------------------------
                                 u.put(name, fac);
                             }
-                            Algorithm a = new Algorithm();
-                            Map<String, List<Applicant>> resultList = a.calculateAlgorithm(CalculateApplicant, u);
+                            Algorithm a = new Algorithm(); //new algorithm for calculation
+                            Map<String, List<Applicant>> resultList = a.calculateAlgorithm(CalculateApplicant, u); //result list for algorithm needs
                             for (Map.Entry<String, List<Applicant>> entry : resultList.entrySet()) {
                                 Log.d(TAG,entry.getKey()+" "+entry.getValue().toString());
                             }
                         }
                         Toast.makeText(ManagerProfile.this, "Finish", Toast.LENGTH_LONG).show();
+                        //run algorithm
                         runAlgorithm.setEnabled(true);
                     }
                     @Override

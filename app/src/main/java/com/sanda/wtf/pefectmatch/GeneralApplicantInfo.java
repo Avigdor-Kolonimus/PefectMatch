@@ -5,6 +5,7 @@ package com.sanda.wtf.pefectmatch;
  * @date 12.2018
  * @version 3.0
  */
+//libraries
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,27 +35,29 @@ public class GeneralApplicantInfo extends AppCompatActivity {
     private String switch_result="Research";
     private Applicant current;
     private static final String TAG = "GeneralApplicantInfo";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general_applicantinfo);
         //receive Applicant object from previous intent
         Intent i = getIntent();
-        current = (Applicant)i.getSerializableExtra("Applicant");
+        current = (Applicant)i.getSerializableExtra("Applicant"); //get Applicant object from previous intent
         Log.d(TAG, "UserName "+current.getName());
         Log.d(TAG, "ID "+current.getApplicantid());
         Log.d(TAG, "Password "+current.getPassword());
         Log.d(TAG, "Name "+current.getApplicantName());
+
+        //match variables to fields in activity
         show_username = findViewById(R.id.tvUserName);
         show_username.setText(current.getName());
-        //match variables to fields in activity
         su_average = findViewById(R.id.etAverage);
         su_projectGrade = findViewById(R.id.etProjectGrade);
         //------------------------------------------------SWITCH------------------------------------
         su_projectNature = findViewById(R.id.switchProjectNature);
         su_projectNature.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
+                if (isChecked) { //show applicant message regarding choice
                     switch_result="Non-Research";
                     Toast.makeText(GeneralApplicantInfo.this, "You have chosen Non-Research", Toast.LENGTH_LONG).show();
                 } else {
@@ -65,27 +68,26 @@ public class GeneralApplicantInfo extends AppCompatActivity {
         });
         //------------------------------------------------SPINNER-----------------------------------
         su_faculty = findViewById(R.id.spinnerFacultyWanted);
-        String[] arraySpinner = new String[] {
+        String[] arraySpinner = new String[] { //spinner values
                 "Foreign Language", "Computer Science"
         };
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, arraySpinner);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); //set values in spinner
         su_faculty.setAdapter(adapter);
-        //------------------------------------------------------------------------------------------
-        //---------------------------------------BUTTON---------------------------------------------
+        //------------------------------------------------BUTTON------------------------------------
         next_step = findViewById(R.id.btnNextStep);
         next_step.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(GeneralApplicantInfo.this, "Advancing to next step!", Toast.LENGTH_LONG).show();
-                double su_av = -1;
-                int su_pg = -1;
-                try{
+                double su_av = -1; //average
+                int su_pg = -1; //project grade
+                try{ //parse data
                     su_av = Double.parseDouble(su_average.getText().toString());
                     su_pg = Integer.parseInt(su_projectGrade.getText().toString());
                 }catch(NumberFormatException e){
-                    Log.d(TAG, "No insert "+e.getMessage());
+                    Log.d(TAG, "Not inserted! Error: "+e.getMessage());
                 }
                 String su_fac = su_faculty.getSelectedItem().toString();
 
@@ -93,7 +95,7 @@ public class GeneralApplicantInfo extends AppCompatActivity {
                 if (su_av <= 0 || su_av > 100 || su_pg <= 0 || su_pg > 100) {
                     Toast.makeText(GeneralApplicantInfo.this, "You have to insert correct data to all fields!", Toast.LENGTH_LONG).show();
                 } else {
-                    //all data in variables
+                    //insert data to applicant object to pass on to next intent
                     current.setProjectNature(switch_result);
                     current.updateProjectGrade(su_pg);
                     current.updateAverage(su_av);

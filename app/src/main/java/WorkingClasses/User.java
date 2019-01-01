@@ -8,14 +8,16 @@ package WorkingClasses;
 //library
 import java.io.Serializable;
 @SuppressWarnings("serial") //With this annotation we are going to hide compiler warnings
-public class User implements Serializable {
+public class User implements Serializable { //To allow passing between intents
     //variables
     private String password;
     private String name;
     private String clientType;
+
     //empty constructor
     public User() { }
-    //constructor with value
+
+    //constructor with values
     public User(String password, String username, String clientType){
         this.password = password;
         this.name = username;
@@ -28,6 +30,7 @@ public class User implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
     //getter and setter for password
     public String getPassword() {
         return password;
@@ -35,6 +38,7 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
     //getter and setter for clientType
     public String getClientType(){ return clientType; }
     public void setClientType(String clientType){ this.clientType = clientType; }

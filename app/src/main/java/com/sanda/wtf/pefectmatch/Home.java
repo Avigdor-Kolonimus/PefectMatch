@@ -31,7 +31,7 @@ public class Home extends AppCompatActivity {
     private EditText usernameInput;
     private EditText passwordInput;
     private Button signupButton; //btnSignUp
-    private Button signinButton;
+    private Button signinButton; //btnD=SignIn
     private RadioGroup radioUserGroup;
     private RadioButton radioUserButton;
     private static final String TAG = "Home";
@@ -50,22 +50,22 @@ public class Home extends AppCompatActivity {
         addListenerOnButton();
     }
 
-    //the function for buttons
+    //function for buttons
     public void addListenerOnButton() {
         //RADIO GROUP
         radioUserGroup = findViewById(R.id.rgType);
-        //EDIT TEXTs
+        //EDIT TEXT fields
         usernameInput = findViewById(R.id.etName);
         passwordInput = findViewById(R.id.etPassword);
         //SIGN UP
         signupButton = findViewById(R.id.btnSignUp);
         signupButton.setOnClickListener(new OnClickListener() {
-            //press on the Sign Up button
+            //when Sign Up button is pressed
             @Override
             public void onClick(View v) {
                 // get selected radio button from radioGroup
                 final int selectedId = radioUserGroup.getCheckedRadioButtonId();
-                // find the radiobutton by returned id
+                // find the radiobutton by returned value
                 radioUserButton = findViewById(selectedId);
                 final String typeUser = radioUserButton.getText().toString();
                 //check kind of user to open it's profile once signed in
@@ -73,7 +73,7 @@ public class Home extends AppCompatActivity {
                     Toast.makeText(Home.this, "Aren't you naughty?", Toast.LENGTH_LONG).show();
                 }else
                     if(typeUser.equals("Applicant")){
-                        DatabaseReference ref = mDatabase.child("Block_Dates");
+                        DatabaseReference ref = mDatabase.child("Block_Dates"); //check if applicants may sign up datewise
                         ref.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -81,12 +81,12 @@ public class Home extends AppCompatActivity {
                                 // whenever data at this location is updated.
                                 String date_app = dataSnapshot.child("dateApplicants").getValue().toString();
                                 String block_app = dataSnapshot.child("blockApplicants").getValue().toString();
-                                if (block_app.equals("UNBLOCK")) {
+                                if (block_app.equals("UNBLOCK")) { //if it is not blocked
                                     Log.d(TAG, "Applicant");
-                                    Intent intent =new Intent(Home.this ,ApplicantSignUp.class);
+                                    Intent intent =new Intent(Home.this ,ApplicantSignUp.class); //pass to sign up intent
                                     startActivity(intent);
                                 }else{
-                                    Toast.makeText(Home.this, "Algorithm it running! Please sign up after "+date_app, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(Home.this, "Algorithm it running! Please sign up after "+date_app, Toast.LENGTH_LONG).show(); //if blocked
                                 }
                             }
                             @Override
@@ -104,11 +104,11 @@ public class Home extends AppCompatActivity {
                                 // whenever data at this location is updated.
                                 String date_uni = dataSnapshot.child("dateUniversity").getValue().toString();
                                 String block_uni = dataSnapshot.child("blockUniversities").getValue().toString();
-                                if (block_uni.equals("UNBLOCK")) {
+                                if (block_uni.equals("UNBLOCK")) { //if it is not blocked
                                     Log.d(TAG, "University");
-                                    Toast.makeText(Home.this, "Not implemented!", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(Home.this, "Not implemented!", Toast.LENGTH_LONG).show(); //message
                                 }else{
-                                    Toast.makeText(Home.this, "Algorithm id running! Please sign up after "+date_uni, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(Home.this, "Algorithm id running! Please sign up after "+date_uni, Toast.LENGTH_LONG).show(); //if blocked
                                 }
                             }
                             @Override
@@ -130,7 +130,7 @@ public class Home extends AppCompatActivity {
                 final String passwordInputString = passwordInput.getText().toString();
                 // get selected radio button from radioGroup
                 final int selectedId = radioUserGroup.getCheckedRadioButtonId();
-                // find the radiobutton by returned id
+                // find the radiobutton by returned value
                 radioUserButton = findViewById(selectedId);
                 final String typeUser = radioUserButton.getText().toString();
                 //check kind of user to open it's profile once signed in
@@ -143,12 +143,12 @@ public class Home extends AppCompatActivity {
                         openApplicant(typeUser, passwordInputString, userInputString);
                     }
                     else{ //last possibility - University
-                        Log.d(TAG, "University");
+                        Log.d(TAG, "University"); //sign in not implemented for university
                     }
             }
         });
     }
-    //check for Manager type
+    //login for Manager type - check input data
     protected void openManager(final String typeUser, final String passwordInputString, final String userInputString){
         //connect to firebase
         final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
@@ -162,7 +162,7 @@ public class Home extends AppCompatActivity {
                         String[] value= new String[2];
                         int i=0;
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            //depending upon what data type you are using caste to it.
+                            //depending upon what data type you are using, cast to it.
                             value[i] = snapshot.getValue(String.class);
                             i++;
                         }
@@ -174,10 +174,10 @@ public class Home extends AppCompatActivity {
                     }
                     //if is all OK
                     if(loginIsOk) {
-                        AuthenticatedUserHolder.instance.setAppUser(user);
+                        AuthenticatedUserHolder.instance.setAppUser(user); //open profile
                         openProfile(typeUser);
                     } else {
-                          Toast.makeText(Home.this, "Either username or password is incorrect.", Toast.LENGTH_LONG).show();
+                          Toast.makeText(Home.this, "Either username or password is incorrect.", Toast.LENGTH_LONG).show(); //not ok - print message
                     }
                 }
                 @Override
@@ -200,7 +200,7 @@ public class Home extends AppCompatActivity {
                         String value= "";
                         if(dataSnapshot.exists()) {
                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                //depending upon what data type you are using caste to it.
+                                //depending upon what data type you are using, cast to it.
                                 value = snapshot.getValue(String.class);
                             }
                         }
@@ -211,10 +211,10 @@ public class Home extends AppCompatActivity {
                         }
                         //if is all OK
                         if(loginIsOk) {
-                            AuthenticatedUserHolder.instance.setAppUser(user);
+                            AuthenticatedUserHolder.instance.setAppUser(user); //open profile
                             openProfile(typeUser);
                         } else {
-                            Toast.makeText(Home.this, "Either username or password is incorrect.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Home.this, "Either username or password is incorrect.", Toast.LENGTH_LONG).show(); //not ok - print message
                         }
                     }
                     @Override
@@ -223,17 +223,17 @@ public class Home extends AppCompatActivity {
         );
     }
 
-    //open correct profile to user
+    //open correct profile of current user signing in
     public void openProfile(String type){
         Toast.makeText(Home.this, "Welcome Back!", Toast.LENGTH_LONG).show();
         if (type.equals("Manager")){
             Log.d(TAG, "Start manager activity");
-            Intent intent =new Intent(this ,ManagerProfile.class);
+            Intent intent =new Intent(this ,ManagerProfile.class); //pass to manager profile intent
             startActivity(intent);
         }
         if (type.equals("Applicant")){
             Log.d(TAG, "Start applicant activity");
-            Intent intent =new Intent(this ,ApplicantProfile.class);
+            Intent intent =new Intent(this ,ApplicantProfile.class); //pass to applicant profile intent
             startActivity(intent);
         }
     }

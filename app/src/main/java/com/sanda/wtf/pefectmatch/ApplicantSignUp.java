@@ -38,7 +38,8 @@ public class ApplicantSignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signupapplicant);
-        //--------------------------------------------EDITTEXTs-------------------------------------
+        //-------------------------------------------EDIT TEXTS-------------------------------------
+        //matching variables to fields
         su_name = findViewById(R.id.etApplicantName);
         su_id = findViewById(R.id.etApplicantId);
         su_username = findViewById(R.id.etApplicantUserName);
@@ -49,7 +50,7 @@ public class ApplicantSignUp extends AppCompatActivity {
             //press on the Sign In button
             @Override
             public void onClick(View v) {
-                //username + password+id+name
+                //username + password + id + name
                 final String userInputString = su_name.getText().toString(); //applicant name
                 final String passwordInputString = su_password.getText().toString(); //applicant password
                 final String usernameInputString = su_username.getText().toString(); //applicant username

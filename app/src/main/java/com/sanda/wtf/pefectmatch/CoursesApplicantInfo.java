@@ -5,7 +5,7 @@ package com.sanda.wtf.pefectmatch;
  * @date 12.2018
  * @version 3.0
  */
-//librries
+//libraries
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -30,7 +30,6 @@ import WorkingClasses.CourseGrade;
 
 public class CoursesApplicantInfo extends AppCompatActivity {
     //Variables
-    private CourseGrade courses[] = new CourseGrade[5];
     private TextView course1name; //tvCourse1Name
     private TextView course2name; //tvCourse2Name
     private TextView course3name; //tvCourse3Name
@@ -43,7 +42,9 @@ public class CoursesApplicantInfo extends AppCompatActivity {
     private EditText course5grade; //etCourse5Grade
     private Button next_courses;    //btnApplicantGrades
 
-    private Applicant current;
+    private Applicant current; //Applicant object
+    private CourseGrade courses[] = new CourseGrade[5]; //CourseGrade array to hold data
+
     private static final String TAG = "CoursesApplicantInfo";
 
     // [START declare_database_ref]
@@ -62,7 +63,7 @@ public class CoursesApplicantInfo extends AppCompatActivity {
 
         //receive Applicant object from previous intent
         Intent i = getIntent();
-        current = (Applicant) i.getSerializableExtra("Applicant");
+        current = (Applicant) i.getSerializableExtra("Applicant"); //insert to current
         //match between variables and fields in activity
         course1name = findViewById(R.id.tvCourse1Name);
         course2name = findViewById(R.id.tvCourse2Name);
@@ -75,7 +76,7 @@ public class CoursesApplicantInfo extends AppCompatActivity {
         course4grade = findViewById(R.id.etCourse4Grade);
         course5grade = findViewById(R.id.etCourse5Grade);
 
-        getCourseNames();
+        getCourseNames(); //get names from firebase
         //---------------------------------------BUTTON---------------------------------------------
         next_courses = findViewById(R.id.btnApplicantGrades);
         next_courses.setOnClickListener(new View.OnClickListener() {
@@ -96,11 +97,11 @@ public class CoursesApplicantInfo extends AppCompatActivity {
                 }catch(NumberFormatException e) {
                     Log.d(TAG, "No insert " + e.getMessage());
                 }
-                //check if all data was inserted check legal values for text fields
+                //check legal values for grade values
                 if (grade1 <= 0 || grade1 > 100 || grade2 <= 0 || grade2 > 100 || grade3 <= 0 || grade3 > 100 || grade4 <= 0 || grade4 > 100 || grade5 <= 0 || grade5 > 100) {
                     Toast.makeText(CoursesApplicantInfo.this, "You have to insert correct data to all fields!", Toast.LENGTH_LONG).show();
                 } else {
-                    //all data into courses
+                    //all data into courses CourseGrade array
                     courses[0].setGrade(grade1);
                     courses[1].setGrade(grade2);
                     courses[2].setGrade(grade3);
@@ -117,6 +118,7 @@ public class CoursesApplicantInfo extends AppCompatActivity {
             }
         });
     }
+
     //Get data from course grades table
     protected void getCourseNames() {
         DatabaseReference ref = mDatabase.child("FacultyToCourses").child(String.valueOf(current.getFaculty()));
@@ -132,14 +134,13 @@ public class CoursesApplicantInfo extends AppCompatActivity {
                     course[i] = Objects.requireNonNull(snapshot.getValue()).toString();
                     i++;
                 }
-
                 //Show data in courses table
                 course1name.setText(course[0]);
                 course2name.setText(course[1]);
                 course3name.setText(course[2]);
                 course4name.setText(course[3]);
                 course5name.setText(course[4]);
-
+                //insert data to courses
                 courses[0] = new CourseGrade(course[0]);
                 courses[1] = new CourseGrade(course[1]);
                 courses[2] = new CourseGrade(course[2]);
