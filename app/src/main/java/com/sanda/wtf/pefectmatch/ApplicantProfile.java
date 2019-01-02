@@ -378,43 +378,41 @@ public class ApplicantProfile extends AppCompatActivity {
     }
     //the function for thread
     protected void ThreadForNotification(){
-        new Thread() {
-            public void run() {
-                final boolean[] flag = {true};
-                while (flag[0]) {
-                    try {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                //Extract data from firebase
-                                DatabaseReference ref = mDatabase.child("Notification").child(String.valueOf(AppUser.getApplicantid())).child("Messege");
-                                ref.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @SuppressLint("SetTextI18n")
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        // This method is called once with the initial value and again
-                                        // whenever data at this location is updated.
-                                        if (dataSnapshot.exists()) {
-                                            if (Objects.requireNonNull(dataSnapshot.getValue()).toString().equals("1")) {
-                                                ref.setValue(0);
-                                                testNoti();
-                                                flag[0] = false;
-                                            }
+        new Thread(() -> {
+            final boolean[] flag = {true};
+            while (flag[0]) {
+                try {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            //Extract data from firebase
+                            DatabaseReference ref = mDatabase.child("Notification").child(String.valueOf(AppUser.getApplicantid())).child("Message");
+                            ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @SuppressLint("SetTextI18n")
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    // This method is called once with the initial value and again
+                                    // whenever data at this location is updated.
+                                    if (dataSnapshot.exists()) {
+                                        if (dataSnapshot.getValue().toString().equals("1")) {
+                                            ref.setValue(0);
+                                            testNoti();
+                                            flag[0] = false;
                                         }
                                     }
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                                        Log.e(TAG, "onCancelled", databaseError.toException());
-                                    }
-                                });
-                            }
-                        });
-                        Thread.sleep(300);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                                }
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    Log.e(TAG, "onCancelled", databaseError.toException());
+                                }
+                            });
+                        }
+                    });
+                    Thread.sleep(300);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
-        }.start();
+        }).start();
     }
 }
